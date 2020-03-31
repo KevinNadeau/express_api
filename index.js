@@ -33,9 +33,10 @@ v1.get('/message/:id', async(request, response) => {
     //récupérer la citation qui correspond à l'id transmis
     const id = request.params.id;
     const quote = quoteArray.find(function(currentQuote) {
-
+        return currentQuote.id == id;
     });
-    response.send(quote);
+    //ternaire
+    quote ? response.send(quote) : response.sendStatus(404);
 });
 
 app.listen(3000, () => {
